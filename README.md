@@ -70,7 +70,7 @@ bodyUpdated    whether the PR body was updated
 
 [ncc](https://github.com/vercel/ncc#installation) is needed
 
-Run `npm run build` in the root directory of this project
+Run `npm run build` in the root directory of this projectt
 
 ## Example
 
