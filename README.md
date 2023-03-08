@@ -19,7 +19,7 @@ repo-token                  no default       secret token to allow making calls 
 ### Optional
 
 ```text
-RegEx Options
+RegEx Optionss
 ------------------
 base-branch-regex           no default       regex to match text from the base branch name
 head-branch-regex           no default       regex to match text from the head branch name
