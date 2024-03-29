@@ -39,7 +39,7 @@ async function run() {
 
         const errorOnFail = inputs.errorOnFail;
 
-        core.info(`error on fail? { errorOnFail ? "true" : "false" }`);
+        core.info(`error on fail?` + errorOnFail);
 
         if (!matchBaseBranch && !matchHeadBranch && errorOnFail) {
             core.setFailed("No branch regex values have been specified");
@@ -188,10 +188,9 @@ async function run() {
             core.error("Updating the pull request has failed");
         }
     } catch (error) {
-        if (errorOnFail) {
-            core.error(error);
-            core.setFailed(error.message);
-        }
+        // something went horribly wrong
+        core.error(error);
+        core.setFailed(error.message);
     }
 }
 
