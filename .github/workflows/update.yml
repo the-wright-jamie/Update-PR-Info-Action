@@ -12,6 +12,7 @@ jobs:
       - uses: the-wright-jamie/update-pr-info-action@#35-fix
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          error-on-fail: "false"
           base-branch-regex: '[a-z\d-_.\\/]+'
           head-branch-regex: 'go-\d+'
           title-template: "[%headbranch%]"
