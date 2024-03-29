@@ -41,8 +41,12 @@ async function run() {
     core.info(`error on fail? ` + errorOnFail);
 
     if (!matchBaseBranch && !matchHeadBranch) {
-      if (errorOnFail)
-        core.setFailed("No branch regex values have been specified");
+      let message = "No branch regex values have been specified";
+      if (errorOnFail) {
+        core.setFailed(message);
+      } else {
+        core.warn(message);
+      }
       return;
     }
 
@@ -60,8 +64,12 @@ async function run() {
 
       const baseMatches = baseBranch.match(new RegExp(baseBranchRegex));
       if (!baseMatches) {
-        if (errorOnFail)
-          core.setFailed("Base branch name does not match given regex");
+        let message = "Base branch name does not match given regex";
+        if (errorOnFail) {
+          core.setFailed(message);
+        } else {
+          core.warn(message);
+        }
         return;
       }
 
@@ -80,8 +88,12 @@ async function run() {
 
       const headMatches = headBranch.match(new RegExp(headBranchRegex));
       if (!headMatches) {
-        if (errorOnFail)
+        let message = "Head branch name does not match given regex";
+        if (errorOnFail) {
           core.setFailed("Head branch name does not match given regex");
+        } else {
+          core.warn("Head branch name does not match given regex");
+        }
         return;
       }
 
