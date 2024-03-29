@@ -30,6 +30,7 @@ Make sure you set the permissions correctly otherwise the action won't be able t
 | Option | Default | Description | 
 | :-: | :-: | -- |
 |`lowercase-branch`    |        default: true  |  whether to make the branch name lowercase internally before matching|
+|`error-on-fail`    |        default: true  |  whether to make the action fail on regex check fail |
 
 #### Title Options
 | Option | Default | Description | 

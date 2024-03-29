@@ -8,6 +8,7 @@ async function run() {
 
     const inputs = {
       token: core.getInput("repo-token", { required: true }),
+      errorOnFail: core.getInput("error-on-fail").toLowerCase() === "true",
       baseBranchRegex: core.getInput("base-branch-regex"),
       headBranchRegex: core.getInput("head-branch-regex"),
       lowercaseBranch:
@@ -35,8 +36,17 @@ async function run() {
     const headBranchRegex = inputs.headBranchRegex.trim();
     const matchHeadBranch = headBranchRegex.length > 0;
 
+    const errorOnFail = inputs.errorOnFail;
+
+    core.info(`error on fail? ` + errorOnFail);
+
     if (!matchBaseBranch && !matchHeadBranch) {
-      core.setFailed("No branch regex values have been specified");
+      let message = "No branch regex values have been specified";
+      if (errorOnFail) {
+        core.setFailed(message);
+      } else {
+        core.notice(message);
+      }
       return;
     }
 
@@ -54,7 +64,12 @@ async function run() {
 
       const baseMatches = baseBranch.match(new RegExp(baseBranchRegex));
       if (!baseMatches) {
-        core.setFailed("Base branch name does not match given regex");
+        let message = "Base branch name does not match given regex";
+        if (errorOnFail) {
+          core.setFailed(message);
+        } else {
+          core.notice(message);
+        }
         return;
       }
 
@@ -73,7 +88,12 @@ async function run() {
 
       const headMatches = headBranch.match(new RegExp(headBranchRegex));
       if (!headMatches) {
-        core.setFailed("Head branch name does not match given regex");
+        let message = "Head branch name does not match given regex";
+        if (errorOnFail) {
+          core.setFailed("Head branch name does not match given regex");
+        } else {
+          core.notice("Head branch name does not match given regex");
+        }
         return;
       }
 
@@ -182,6 +202,7 @@ async function run() {
       core.error("Updating the pull request has failed");
     }
   } catch (error) {
+    // something went horribly wrong
     core.error(error);
     core.setFailed(error.message);
   }

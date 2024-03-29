@@ -5,6 +5,10 @@ runs:
   using: "node20"
   main: "dist/index.js"
 inputs:
+  error-on-fail:
+    description: "Fail the PR Checks if there is any issues"
+    required: false
+    default: "true"
   repo-token:
     description: "[REQUIRED] The GITHUB_TOKEN secret, which is needed to access the repository"
     required: true
