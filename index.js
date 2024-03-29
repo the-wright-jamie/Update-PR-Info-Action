@@ -39,6 +39,8 @@ async function run() {
 
         const errorOnFail = inputs.errorOnFail;
 
+        core.info(`error on fail? { errorOnFail ? "true" : "false" }`);
+
         if (!matchBaseBranch && !matchHeadBranch && errorOnFail) {
             core.setFailed("No branch regex values have been specified");
             return;
