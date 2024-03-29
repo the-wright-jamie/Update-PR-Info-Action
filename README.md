@@ -93,7 +93,7 @@ jobs:
   update_pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: the-wright-jamie/update-pr-info-action@v1
+      - uses: the-wright-jamie/update-pr-info-action@master
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           base-branch-regex: '[a-z\d-_.\\/]+'
