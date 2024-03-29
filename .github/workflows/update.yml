@@ -9,7 +9,7 @@ jobs:
   update_pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: the-wright-jamie/update-pr-info-action@#35-fix
+      - uses: the-wright-jamie/update-pr-info-action@master
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           error-on-fail: "false"
