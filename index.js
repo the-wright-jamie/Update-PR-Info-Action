@@ -45,7 +45,7 @@ async function run() {
       if (errorOnFail) {
         core.setFailed(message);
       } else {
-        core.warn(message);
+        core.notice(message);
       }
       return;
     }
@@ -68,7 +68,7 @@ async function run() {
         if (errorOnFail) {
           core.setFailed(message);
         } else {
-          core.warn(message);
+          core.notice(message);
         }
         return;
       }
@@ -92,7 +92,7 @@ async function run() {
         if (errorOnFail) {
           core.setFailed("Head branch name does not match given regex");
         } else {
-          core.warn("Head branch name does not match given regex");
+          core.notice("Head branch name does not match given regex");
         }
         return;
       }
