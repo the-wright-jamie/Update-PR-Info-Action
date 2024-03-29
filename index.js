@@ -8,6 +8,8 @@ async function run() {
 
     const inputs = {
       token: core.getInput("repo-token", { required: true }),
+      errorOnFail:
+        core.getInput("error-on-fail").toLowerCase() === "true",
       baseBranchRegex: core.getInput("base-branch-regex"),
       headBranchRegex: core.getInput("head-branch-regex"),
       lowercaseBranch:
@@ -183,7 +185,9 @@ async function run() {
     }
   } catch (error) {
     core.error(error);
-    core.setFailed(error.message);
+    if (inputs.errorOnFail) {
+      core.setFailed(error.message);
+    }
   }
 }
 
